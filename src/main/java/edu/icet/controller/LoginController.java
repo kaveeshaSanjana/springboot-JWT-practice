@@ -1,11 +1,12 @@
 package edu.icet.controller;
 
+import edu.icet.dto.UserRequestDto;
+import edu.icet.dto.UserResponseDto;
+import edu.icet.entity.UserEntity;
+import edu.icet.service.AuthService;
 import edu.icet.service.JWTService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
@@ -13,15 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     final JWTService service;
+    final AuthService userService;
 
-    @GetMapping("/login")
+    @GetMapping("/test-token")
     public String getAll(){
-        return service.getToken();
+        return null;
     }
 
     @GetMapping("/user")
     public String getUser(@RequestParam String token){
         return service.getUsername(token);
+    }
+
+    @GetMapping("/login")
+    public UserResponseDto login(@RequestBody UserRequestDto userRequestDto){
+        if(userRequestDto==null||userRequestDto.getEmail()==null||userRequestDto.getPassword()==null){
+            return new UserResponseDto(null,null,"Fill Data is Mandatory");
+        }
+
+        return  userService.create(userRequestDto);
+
     }
 
 }

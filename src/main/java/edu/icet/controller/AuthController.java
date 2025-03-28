@@ -1,5 +1,6 @@
 package edu.icet.controller;
 
+import edu.icet.dto.UserRequestDto;
 import edu.icet.entity.UserEntity;
 import edu.icet.service.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/save")
-    public UserEntity save(@RequestBody UserEntity user ){
+    public UserEntity save(@RequestBody UserRequestDto user ){
         return authService.save(user);
     }
 
