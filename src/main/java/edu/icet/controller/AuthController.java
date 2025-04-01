@@ -4,7 +4,7 @@ import edu.icet.dto.UserRequestDto;
 import edu.icet.entity.UserEntity;
 import edu.icet.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
