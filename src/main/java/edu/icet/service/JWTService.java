@@ -31,7 +31,7 @@ public class JWTService {
     private Claims tokenData(String token){
         try {
             return Jwts
-                    .parser()
+                        .parser()
                     .verifyWith(secretKey)
                     .build()
                     .parseSignedClaims(token)
