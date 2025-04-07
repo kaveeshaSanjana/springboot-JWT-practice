@@ -44,10 +44,10 @@ public class AuthService {
             claims.put("role","user");
             claims.put("ip","108.663.25.8");
 
-            String token = jwtService.getToken(userRequestDto.getEmail(), claims);
+            String token = jwtService.getToken(userRequestDto.getEmail(), claims );
             return new UserResponseDto(token,null,"Already Exists");
 
         }
-        return new UserResponseDto(null,null,"Already nit Exists");
+        return new UserResponseDto(null,null,"Already not Exists");
     }
 }

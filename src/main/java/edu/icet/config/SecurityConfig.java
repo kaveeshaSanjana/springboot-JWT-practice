@@ -25,14 +25,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final UserDao userDao;
-    private final JWTFilter filter;
+        private final JWTFilter filter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(r->r.requestMatchers("/login")
+                .authorizeHttpRequests(r->r.requestMatchers("/login" +
+                                "")
                 .permitAll()
                 .anyRequest().authenticated())
         .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
